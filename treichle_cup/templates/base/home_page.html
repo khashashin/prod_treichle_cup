@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags wagtailimages_tags %}
+{% block body_class %}template-{{ self.get_verbose_name|slugify }}{% endblock %}
+{% block head-extra %}
+<link rel="stylesheet" href="{% static 'css/extra.css' %}">
+{% endblock head-extra %}
+
+{% block content %}
+      <div class="row">
+          <div class="col-md-8">
+              {% if page.news_section %}
+              <h2 class="news_title">{{ page.news_section_title }}</h2>
+                      {% for childpage in page.news_section.specific.children|slice:"6" %}
+                          <div class="col-md-12 jasgrid">
+                              <div class="box-item">
+                                  <div class="box-post">
+                                      <h1 class="post-title">
+                                          <a href="{{childpage.url}}">
+                                              {{ childpage.title }}
+                                          </a>
+                                      </h1>
+                                      {% if childpage.date_published %}
+                                      <span class="meta">
+                                          <span><i class="fa fa-clock-o"></i> {{ childpage.date_published }}</span>
+                                      </span>
+                                      {% endif %}
+                                  </div>
+                                  {% image childpage.feed_image fill-1200x300 %}
+                              </div>
+                          </div>
+                      {% endfor %}
+                  </div>
+              {% endif %}
+      </div>
+  </div>
+{% endblock %}
