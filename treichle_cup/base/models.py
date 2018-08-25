@@ -1,17 +1,14 @@
-from __future__ import absolute_import, unicode_literals
-
 from django.db import models
-from wagtail.wagtailadmin.edit_handlers import (
+
+from wagtail.core.models import Page
+from wagtail.admin.edit_handlers import (
     FieldPanel,
     PageChooserPanel,
     MultiFieldPanel,
 )
 
-from wagtail.wagtailcore.models import Page
-
-
 class HomePage(Page):
-
+    # Tournaments List future for next version
     tournament_section_title = models.CharField(
         null=True,
         blank=True,
@@ -27,7 +24,7 @@ class HomePage(Page):
         verbose_name='Choose ',
         help_text='Choose a page to link to for the Matches Page'
     )
-
+    # Matches List future for next version
     matches_section_title = models.CharField(
         null=True,
         blank=True,

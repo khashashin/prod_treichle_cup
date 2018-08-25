@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 from django.db import migrations
 
 
@@ -17,12 +15,12 @@ def create_homepage(apps, schema_editor):
 
     # Create content type for homepage model
     homepage_content_type, __ = ContentType.objects.get_or_create(
-        model='homepage', app_label='home')
+        model='homepage', app_label='base')
 
     # Create a new homepage
     homepage = HomePage.objects.create(
-        title="Home",
-        draft_title="Home",
+        title="Treichle Cup",
+        draft_title="Treichle Cup",
         slug='home',
         content_type=homepage_content_type,
         path='00010001',
@@ -46,7 +44,7 @@ def remove_homepage(apps, schema_editor):
     HomePage.objects.filter(slug='home', depth=2).delete()
 
     # Delete content type for homepage model
-    ContentType.objects.filter(model='homepage', app_label='home').delete()
+    ContentType.objects.filter(model='homepage', app_label='base').delete()
 
 
 class Migration(migrations.Migration):
